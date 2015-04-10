@@ -1,4 +1,12 @@
 <!-- app/views/users/new -->
 <h4>Create an Account</h4>
 
-<%= form_for :user,
+<%= form_for :user, url: '/users' do |f| %>
+  Name: <%= f.text_field :name %>
+  Email: <%= f.text_field :email %>
+  Password: <%= f.password_field :password %>
+
+  <%= f.submit "Create Account" %>
+
+  <% end %>
+

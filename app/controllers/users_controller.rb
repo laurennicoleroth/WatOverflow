@@ -7,7 +7,11 @@ class UsersController < ApplicationController
   end
 
   def create do #this is the post
+    # @user = User.new(user_params)
   end
+
+
+
 
 end
 
