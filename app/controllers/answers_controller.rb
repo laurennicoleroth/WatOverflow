@@ -49,7 +49,9 @@ private
 
   def answer_params
     #TODO: USER ID WILL EVENTUALLY BECOME CURRENT_USER
-    params.require(:answer).permit(:body, :best).merge(user_id: 1, question_id: params[:question_id])
+    params.require(:answer).permit(:body, :best).merge(user_id: 1, question_id: 1)
+
+      # params[:question_id])
   end
 
   def destroy

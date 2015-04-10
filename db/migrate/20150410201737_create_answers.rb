@@ -1,7 +1,7 @@
 class CreateAnswers < ActiveRecord::Migration
   def change
     create_table :answers do |t|
-      t.text :body, null: false
+      t.text :body, null: false, minimum: 1
       t.boolean :best, default: false
       t.references :user, null: false
       t.references :question, null: false
