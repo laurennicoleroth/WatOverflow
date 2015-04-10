@@ -20,9 +20,6 @@ class AnswersController < ActionController::Base
     # TODO: ADD USER AUTH
     # @answer.user_id = session[:user_id]
 
-    #TODO: ASSOCIATE WITH QUESTION
-    #@question = Question.find(params[:id])?
-
     if @answer.save
       redirect_to @answer
     else
@@ -40,9 +37,6 @@ def edit
     # TODO: ADD USER AUTH
     # @answer.user_id = session[:user_id]
 
-    #TODO: ASSOCIATE WITH QUESTION
-    #@question = Question.find(params[:id])?
-
      @answer.update(answer_params)
      if @answer.save
       redirect_to @answer
@@ -54,7 +48,8 @@ def edit
 private
 
   def answer_params
-    params.require(:answer).permit(:body, :best, :user_id, :question_id)
+    #TODO: USER ID WILL EVENTUALLY BECOME CURRENT_USER
+    params.require(:answer).permit(:body, :best).merge(user_id: 1, question_id: params[:question_id])
   end
 
   def destroy
