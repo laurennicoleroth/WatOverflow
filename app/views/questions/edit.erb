@@ -1,1 +1,11 @@
 <!-- TODO: Update form of question. No hidden fields -->
+<div class="container">
+  <h4>Create a question:</h4>
+  <p>
+    <%= form_for @question do |f|%>
+      <%= f.text_field :title, value: "#{@question.title}" %>
+      <%= f.text_field :content, value: "#{@question.content}"%>
+      <%= submit_tag "Submit" %>
+    <% end %>
+  </p>
+</div>

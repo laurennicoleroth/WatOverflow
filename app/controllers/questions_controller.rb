@@ -29,7 +29,7 @@ class QuestionsController < ApplicationController
   def update
     question = Question.find_by(id: params[:id])
      if question.update(question_params)
-       redirect_to "/"
+       redirect_to question_path(question.id)
      else
        [404]
      end
@@ -43,6 +43,7 @@ class QuestionsController < ApplicationController
   private
 
   def question_params
-    params.require(:question).permit(:title, :content).merge(user_id: current_user.id)
+    # TODO: User ID will eventually become current_user.id
+    params.require(:question).permit(:title, :content).merge(user_id: 1)
   end
 end
