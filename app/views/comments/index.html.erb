@@ -2,7 +2,6 @@
 <% @comments.each do |comment| %>
   <div>
     <strong>Commentable ID: <%= comment.commentable_id %></strong>
-    <%= link_to
     <br />
     <p><%= comment.body %></p>
     <p><%= link_to 'Delete', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } %></p>

@@ -13,7 +13,14 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = @comments.create(params[:comment])
+    p comment_params
+    @comment = Comment.create!(comment_params)
+    if @comment.valid?
+      render partial: "comment", layout: false, locals: { comment: @comment }
+    else
+      @errors = @comment.errors.full_messages
+      render partial: "comment", layout: false, locals: { comment: @comment }
+    end
   end
 
   def update
@@ -31,6 +38,6 @@ class CommentsController < ApplicationController
 private
 
   def comment_params
-    params.require(:comment).permit(:body, :user, :commentable)
+    params.require(:comment).permit(:body, :user_id)
   end
 end

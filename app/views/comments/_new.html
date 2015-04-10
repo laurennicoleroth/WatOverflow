@@ -3,6 +3,6 @@
 <%= form_for @comment, html: {class: "create-comment"} do |f| %>
 <%= f.label :body, 'Body' %>
 <%= f.text_area(:body, cols: 100, rows: 10) %>
-<%# f.hidden_field :commenter_id, value: current_user.id %>
+<%= f.hidden_field :user_id, value: 1 %>
 <%= f.submit  %>
 <% end %>
