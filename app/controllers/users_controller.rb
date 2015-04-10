@@ -1,7 +1,13 @@
+class UsersController < ApplicationController
 
-def index do
-end
+  def index do #probably dont need this
+  end
 
-def create do
+  def new do #this is the get
+  end
+
+  def create do #this is the post
+  end
+
 end
 
