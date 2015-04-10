@@ -12,6 +12,7 @@ class CommentsController < ApplicationController
   end
 
   def create
+    @comment = @comments.create(params[:comment])
   end
 
   def update
