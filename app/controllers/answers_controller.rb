@@ -6,6 +6,9 @@ class AnswersController < ActionController::Base
     @answers = Answer.all
   end
 
+  def show
+    @answer = Answer.find(params[:id])
+  end
 
 
 private
