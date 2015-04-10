@@ -1,1 +1,19 @@
 <!-- TODO: Display individual question. -->
+<div class="container">
+  <div class="edit">
+    <!-- TODO: Add "if current user" edit and delete -->
+  </div>
+  <div class="joke">
+    <h2><%=@question.title%></h2>
+    <p><%=@question.content%></p>
+  </div>
+
+
+  <!-- TODO: Make these into render partial -->
+  <div class="comment-new">
+    <%= link_to "new comment", comment_path(@question.comments.id) %>
+  </div>
+  <div class="comment-show">
+    <%= link_to "show comment",comment_path(@question.comments.id) %>
+  </div>
+</div>

@@ -1,1 +1,13 @@
 <!-- TODO: Display all jokes (Eventually split into highest votes/most recent/trending partials) -->
+<div class="container">
+  <div class="edit">
+    <!-- TODO: Add "if current user" edit and delete -->
+  </div>
+  <div class="all-jokes">
+    <ul>
+      <% @questions.each do |q| %>
+        <li><%= link_to "#{q.title}", question_path(q.id) %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
