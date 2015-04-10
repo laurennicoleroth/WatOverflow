@@ -9,6 +9,7 @@ class CommentsController < ApplicationController
 
   def new
     @comment = Comment.new
+    render partial: "new", layout: false, locals: { comment: @comment }
   end
 
   def create
