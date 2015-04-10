@@ -57,4 +57,10 @@ private
     params.require(:answer).permit(:body, :best, :user_id, :question_id)
   end
 
+  def destroy
+    @answer = Answer.find(params[:id])
+    @answer.destroy!
+    redirect_to '/'
+  end
+
 end
