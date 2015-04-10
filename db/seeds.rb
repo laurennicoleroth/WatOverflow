@@ -20,21 +20,21 @@ User.all.each do |user|
     Answer.create!(body: TubularFaker.lingo, user_id: user.id, question_id: rand(1..25))
   end
   5.times do
-    Comment.create!(body: TubularFaker.lingo, user_id: user.id, commentable_id: rand(1..25), commentable_type: "question")
+    Comment.create!(body: TubularFaker.lingo, user_id: user.id, commentable_id: rand(1..25), commentable_type: "Question")
   end
   5.times do
-    Comment.create!(body: TubularFaker.lingo, user_id: user.id, commentable_id: rand(1..25), commentable_type: "answer")
+    Comment.create!(body: TubularFaker.lingo, user_id: user.id, commentable_id: rand(1..25), commentable_type: "Answer")
   end
   5.times do
-    Vote.create!( votable_id: rand(1..25), votable_type: "question")
+    Vote.create!( votable_id: rand(1..25), votable_type: "Question")
   end
   5.times do
-    Vote.create!( votable_id: rand(1..25), votable_type: "question")
+    Vote.create!( votable_id: rand(1..25), votable_type: "Question")
   end
   5.times do
-    Vote.create!( votable_id: rand(1..25), votable_type: "answer")
+    Vote.create!( votable_id: rand(1..25), votable_type: "Answer")
   end
    5.times do
-    Vote.create!( votable_id: rand(1..25), votable_type: "comment")
+    Vote.create!( votable_id: rand(1..25), votable_type: "Comment")
   end
 end
