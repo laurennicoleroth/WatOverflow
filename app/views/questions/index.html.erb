@@ -1,13 +1,13 @@
 <!-- TODO: Display all jokes (Eventually split into highest votes/most recent/trending partials) -->
 <div class="container">
   <div class="edit">
-    <!-- TODO: Add "if current user"-->
-    <!-- This may just go into the WAT index page -->
-    <%= link_to "New", new_question_path %>
+    <% if current_user %>
+      <%= link_to "New", new_question_path %>
+    <% end %>
   </div>
   <div class="all-jokes">
     <ul>
-      gi<%= render partial: "question", collection: @questions %>
+      <%= render partial: "question", collection: @questions %>
     </ul>
   </div>
 </div>
