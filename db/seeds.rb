@@ -1,4 +1,5 @@
 require 'tubular-faker'
+require 'faker'
 
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
@@ -14,16 +15,16 @@ end
 
 User.all.each do |user|
   5.times do
-    Question.create!(title: TubularFaker.lingo, content: TubularFaker.lingo, user_id: user.id)
+    Question.create!(title: Faker::Lorem.sentence, content: Faker::Lorem.paragraph(2), user_id: user.id)
   end
   5.times do
-    Answer.create!(body: TubularFaker.lingo, user_id: user.id, question_id: rand(1..25))
+    Answer.create!(body: Faker::Lorem.paragraph(2), user_id: user.id, question_id: rand(1..25))
   end
   5.times do
-    Comment.create!(body: TubularFaker.lingo, user_id: user.id, commentable_id: rand(1..25), commentable_type: "Question")
+    Comment.create!(body: Faker::Lorem.paragraph(2), user_id: user.id, commentable_id: rand(1..25), commentable_type: "Question")
   end
   5.times do
-    Comment.create!(body: TubularFaker.lingo, user_id: user.id, commentable_id: rand(1..25), commentable_type: "Answer")
+    Comment.create!(body: Faker::Lorem.paragraph(2), user_id: user.id, commentable_id: rand(1..25), commentable_type: "Answer")
   end
   5.times do
     Vote.create!( votable_id: rand(1..25), votable_type: "Question")
