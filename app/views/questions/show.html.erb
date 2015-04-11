@@ -8,6 +8,9 @@
   <div class="joke">
     <h2><%=@question.title%></h2>
     <p><%=@question.content%></p>
+    <% @question.comments.each do |c|%>
+      <%= link_to "question comment #{c.id}", comment_path(c.id)%>
+    <% end %>
   </div>
 
 
