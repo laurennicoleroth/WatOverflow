@@ -1,4 +1,4 @@
-class AnswersController < ApplicationController
+ class AnswersController < ApplicationController
 
 # Add in voting logic
 # Add in comments logic
@@ -12,13 +12,12 @@ class AnswersController < ApplicationController
 
   def new
     @answer = Answer.new
+    @question_id = @answer.question_id
   end
 
   def create
     @answer = Answer.new(answer_params)
-
-    # TODO: ADD USER AUTH
-    # @answer.user_id = session[:user_id]
+    @answer.user_id = session[:user_id]
 
     if @answer.save
       redirect_to @answer
@@ -33,9 +32,7 @@ def edit
 
   def update
      @answer = Answer.find(params[:id])
-
-    # TODO: ADD USER AUTH
-    # @answer.user_id = session[:user_id]
+     @answer.user_id = session[:user_id]
 
      @answer.update(answer_params)
      if @answer.save
@@ -48,10 +45,7 @@ def edit
 private
 
   def answer_params
-    #TODO: USER ID WILL EVENTUALLY BECOME CURRENT_USER
-    params.require(:answer).permit(:body, :best).merge(user_id: 1, question_id: 1)
-
-      # params[:question_id])
+    params.require(:answer).permit(:body, :best).merge(user_id: session[:user_id], question_id: params[:question_id])
   end
 
   def destroy
