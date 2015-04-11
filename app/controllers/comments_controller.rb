@@ -13,6 +13,7 @@ class CommentsController < ApplicationController
   end
 
   def create
+    flash[:notice] = "Thanks for your comment!"
     @comment = Comment.create!(comment_params)
     if @comment.valid?
       render partial: "comment", layout: false, locals: { comment: @comment }
