@@ -1,25 +1,28 @@
 <div class="container">
   <div class="edit">
-    <!-- TODO: Add "if current user" edit and delete -->
-    <%= link_to "Edit question", edit_question_path(@question.id)%>
-    <!-- The delete has no path because all we want to do is click it to delete. Data will pop up a message and ask for a confirmation if it's okay to delete. Once you hit okay, it will disappear and redirect to the questions index page. -->
-    <%= link_to "Delete question", question_path, method: :delete, data: {confirm: "Do you want to delete this?"}%>
+    <% if current_user %>
+      <%= link_to "Edit question", edit_question_path(@question.id)%>
+      <!-- The delete has no path because all we want to do is click it to delete. Data will pop up a message and ask for a confirmation if it's okay to delete. Once you hit okay, it will disappear and redirect to the root index page. -->
+      <%= link_to "Delete question", root_path, method: :delete, data: {confirm: "Do you want to delete this?"}%>
+    <% end %>
   </div>
   <div class="joke">
     <h2><%=@question.title%></h2>
     <p><%=@question.content%></p>
-    <% @question.comments.each do |c|%>
-      <%= link_to "question comment #{c.id}", comment_path(c.id)%>
+    <p>Comments:</p>
+    <% @question.comments.each do |comment|%>
+      <%= render partial: 'comments/comment', locals: {comment: comment} %>
     <% end %>
   </div>
 
-
-  <!-- TODO: Make these into render partial -->
-  <div class="comment-new">
+  <div class="answers-new">
     <!-- Locals' symbols can be named anything since we will be using it like a variable in the linked comment. We should distinguish the different variables once everything ties into each other (ie. votes_id/type, answers_id/type, questions_id/type) -->
-    <%= link_to "new answer", new_answer_path, locals: {question_id: @question.id, question_type: "Question"} %>
+    <%= render partial: 'answers/new', locals: {question_id: @question.id} %>
   </div>
-  <div class="comment-show">
-    <%= link_to "show answer", answer_path(@question.id), locals: {question_id: @question.id, question_type: "Question"} %>
+  <div class="answers-show">
+    <!-- TODO: This provides the local variable "answer" which we'll need to replace with the @answer in the _show.erb -->
+    <% @question.answers.each do |answer| %>
+      <%= render partial: 'answers/show', locals: {answer: answer} %>
+    <% end %>
   </div>
 </div>

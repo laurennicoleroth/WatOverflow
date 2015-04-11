@@ -5,7 +5,9 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    # Answer.new is needed here because when using partial (See in 'views/questions/show'), you need to pass in the parameters for the partial to work. We can take out the answers controller's 'def new' at this point.
     @question = Question.find_by(id: params[:id])
+    @answer = Answer.new
   end
 
   def new
@@ -42,8 +44,7 @@ class QuestionsController < ApplicationController
   private
 
   def question_params
-    # TODO: User ID will eventually become current_user.id. Currently using 1 as an stand in.
     # What merge does is pass along parameters from either "current user" or hidden parameters from forms.
-    params.require(:question).permit(:title, :content).merge(user_id: 1)
+    params.require(:question).permit(:title, :content).merge(user_id: current_user.id)
   end
 end
