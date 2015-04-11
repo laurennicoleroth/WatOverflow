@@ -20,9 +20,9 @@ class QuestionsController < ApplicationController
   def create
     new_question = Question.new(question_params)
     if new_question.save!
-      redirect_to "/questions/#{new_question.id}"
+      redirect_to question_path(new_question.id)
     else
-      [404]
+      [404, "you lost, so far gone"]
     end
   end
 
@@ -31,7 +31,7 @@ class QuestionsController < ApplicationController
      if question.update(question_params)
        redirect_to question_path(question.id)
      else
-       [404]
+       [404, "you lost, so far gone"]
      end
   end
 
@@ -43,7 +43,8 @@ class QuestionsController < ApplicationController
   private
 
   def question_params
-    # TODO: User ID will eventually become current_user.id
+    # TODO: User ID will eventually become current_user.id. Currently using 1 as an stand in.
+    # What merge does is pass along parameters from either "current user" or hidden parameters from forms.
     params.require(:question).permit(:title, :content).merge(user_id: 1)
   end
 end
