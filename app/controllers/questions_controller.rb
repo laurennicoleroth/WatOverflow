@@ -1,4 +1,3 @@
-# TODO: Change to rails controller
 class QuestionsController < ApplicationController
 
   def index

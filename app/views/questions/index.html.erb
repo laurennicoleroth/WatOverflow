@@ -2,13 +2,12 @@
 <div class="container">
   <div class="edit">
     <!-- TODO: Add "if current user"-->
+    <!-- This may just go into the WAT index page -->
     <%= link_to "New", new_question_path %>
   </div>
   <div class="all-jokes">
     <ul>
-      <% @questions.each do |q| %>
-        <li><%= link_to "#{q.title}", question_path(q.id) %></li>
-      <% end %>
+      gi<%= render partial: "question", collection: @questions %>
     </ul>
   </div>
 </div>
