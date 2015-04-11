@@ -1,0 +1,8 @@
+<div id="flash">
+  <% if flash[:notice] %>
+    <em class="info_box"><%= flash[:notice] %></em>
+  <% end %>
+  <% if flash[:error] %>
+    <em class="error_box"><%= flash[:error] %></em>
+  <% end %>
+</div>
