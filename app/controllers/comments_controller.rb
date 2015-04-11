@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
     end
   end
 
-  def update
+  def edit
   end
 
   def destroy
