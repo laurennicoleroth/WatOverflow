@@ -5,6 +5,7 @@ class CommentsController < ApplicationController
 
   def show
     @comment = Comment.find(params[:id])
+    render partial: "comment", layout: false, locals: { comment: @comment }
   end
 
   def new
@@ -24,9 +25,19 @@ class CommentsController < ApplicationController
   end
 
   def edit
+    @comment = Comment.find(params[:id])
+    render partial: "comment", layout: false, locals: { comment: @comment }
   end
 
   def destroy
+    @comment = Comment.find(params[:id])
+    if @comment
+      flash[:notice] = "Thanks for your comment!"
+      p @comment
+      # @comment.destroy
+    else
+      redirect_to '/'
+    end
   end
 
   def upvote
