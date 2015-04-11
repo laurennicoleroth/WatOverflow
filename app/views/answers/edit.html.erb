@@ -1,6 +1,7 @@
 <%= form_for(@answer) do |f| %>
+
   <%= f.label :body, "Edit Your Answer" %>
   <%= f.text_area :body, :cols => 40, :rows => 20  %>
 
-  <%= f.submit "Submit" %>
+  <%= f.submit "Submit Answer" %>
 <% end %>

@@ -1,9 +1,7 @@
-<!-- TODO: MAKE INTO PARTIAL -->
-
 <%= form_for @answer, url: {action: "create"} do |f| %>
 
   <%= f.label :body, "Your Answer" %>
-  <%= f.text_area :body, :cols => 40, :rows => 20  %>
+  <%= f.text_area :body  %>
 
-  <%= f.submit "Submit Answer" %>
+  <%= f.submit "Submit" %>
 <% end %>
