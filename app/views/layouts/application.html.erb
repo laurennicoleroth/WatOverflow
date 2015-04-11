@@ -7,10 +7,13 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<%= render :partial => 'layouts/navigation' %>
 <%= render :partial => 'layouts/flash' %>
-
-<%= yield %>
+<div class="container">
+  <div class="row">
+    <%= yield %>
+  </div>
+</div>
 
 </body>
 </html>
