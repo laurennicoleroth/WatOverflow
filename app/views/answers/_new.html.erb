@@ -1,5 +1,7 @@
 <%= form_for @answer, url: {action: "create"} do |f| %>
 
+  <%= f.hidden_field :question_id, value: @question_id %>
+
   <%= f.label :body, "Your Answer" %>
   <%= f.text_area :body  %>
 
