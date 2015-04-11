@@ -1,3 +1,7 @@
-<div class="container">
-  <li><%= link_to "#{question.title}", question_path(question.id) %></li>
-</div>
+<tr>
+  <td><%= question.votes.count %> Votes</td>
+  <td><%= question.comments.count %> Comments</td>
+  <td><%= link_to "#{question.title}", question_path(question.id) %></td>
+  <td>Time Ago</td>
+  <td>User <%= question.user_id %></td>
+</tr>
