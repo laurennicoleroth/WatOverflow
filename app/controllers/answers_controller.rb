@@ -1,4 +1,4 @@
-class AnswersController < ActionController::Base
+class AnswersController < ApplicationController
 
 # Add in voting logic
 # Add in comments logic

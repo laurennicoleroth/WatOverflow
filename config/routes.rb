@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :comments
   resources :votes
 
+  root to: 'questions#index'
+
   get '/signup' => 'users#new'
   post'/users' => 'users#create'
 
