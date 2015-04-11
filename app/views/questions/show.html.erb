@@ -15,7 +15,7 @@
     <% end %>
     <%= link_to 'comments/new', new_comment_path, locals:{question: @question} %>
     <!--vv TODO: one of these? ^^-->
-    <%= render partial: 'comments/new', locals: {question_id: @question.id, type: "Question"} %>
+<!--     <%#= render partial: 'comments/new', locals: {question_id: @question.id, type: "Question"} %> -->
   </div>
 
   <div class="answers-new">
