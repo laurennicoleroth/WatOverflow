@@ -32,11 +32,11 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     if @comment
-      flash[:notice] = "Thanks for your comment!"
-      p @comment
-      # @comment.destroy
+      @comment.destroy
+      flash[:notice] = "Comment Destroyed"
+      redirect_to '/comments'
     else
-      redirect_to '/'
+      redirect_to :action => 'show'
     end
   end
 
