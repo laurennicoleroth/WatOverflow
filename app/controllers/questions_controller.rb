@@ -8,6 +8,7 @@ class QuestionsController < ApplicationController
     # Answer.new is needed here because when using partial (See in 'views/questions/show'), you need to pass in the parameters for the partial to work. We can take out the answers controller's 'def new' at this point.
     @question = Question.find_by(id: params[:id])
     @username = User.find(@question.user_id).name.downcase.split('').join.gsub(' ','')
+    @answers = @question.answers
     @answer = Answer.new
   end
 

@@ -3,7 +3,7 @@
   <%= f.hidden_field :question_id, value: @question_id %>
 
   <%= f.label :body, "Your Answer" %>
-  <%= f.text_area :body  %>
+  <%= f.text_area :body, :size => "120x10"  %>
 
   <%= f.submit "Submit" %>
 <% end %>
