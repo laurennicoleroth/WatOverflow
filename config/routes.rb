@@ -1,26 +1,16 @@
 Rails.application.routes.draw do
-
-  get 'comments/index'
-
-  get 'comments/show'
-
-  get 'comments/new'
-
-  get 'comments/create'
-
-  get 'comments/update'
-
-  get 'comments/destroy'
-
-  get 'comments/upvote'
-
-  get 'comments/downvote'
-
   resources :users
   resources :questions
   resources :answers
   resources :comments
   resources :votes
+
+  get '/signup' => 'users#new'
+  post'/users' => 'users#create'
+
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
