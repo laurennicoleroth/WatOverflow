@@ -29,6 +29,8 @@
       <%= link_to "Delete", root_path, method: :delete, data: {confirm: "Do you want to delete this?"}%>
     <% end %>
   </div>
+
+
   </div>
   <div class="col-md-10">
     <blockquote><%=@question.content%></blockquote>
@@ -36,11 +38,8 @@
   </div>
 
 
-<h3><%= @question.answers.count %> Answer(s)</h3>
-<%= render partial: 'answers/answer', collection: @answers %>
-<%= render partial: 'answers/new', locals: {question_id: @question.id} %>
-
-  <h3>Comments:</h3>
+<!-- THis is where you need the question comments to go  -->
+<h4> Question Comments:</h4>
     <% @question.comments.each do |comment|%>
       <%= render partial: 'comments/comment', locals: {comment: comment} %>
     <% end %>
@@ -50,7 +49,16 @@
     <% @question.answers.each do |answer| %>
       <%= render partial: 'answers/show', locals: {answer: answer} %>
     <% end %>
+
+
+
+<h3><%= @question.answers.count %> Answer(s)</h3>
+<%= render partial: 'answers/answer', collection: @answers %>
+<%= render partial: 'answers/new', locals: {question_id: @question.id} %>
+
+
+
   </div>
-<div>
+
 
         <!-- /.row -->
