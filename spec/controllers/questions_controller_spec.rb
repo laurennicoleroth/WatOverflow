@@ -25,13 +25,13 @@ describe QuestionsController do
 
   context "create" do
     it "creates a new question" do
-      params = { question: {title: "Wat is dis?", content: "I'm truly confused with what the goal is for this website.", user_id: 1}}
+      params = { question: {title: "Wat is dis?", content: "I'm truly confused with what the goal is for this website."}}
       post(:create, params)
       expect(Question.last.title).to eq("Wat is dis?")
     end
 
+    # TODO: Fix invalid questions test
     it "shouldn't allow a question to be created with invalid params" do
-      # params = {question: {title: 123, content: "Contents invalid"}}
       params = {question: {title: 123}}
       questions = Question.count
       post(:create, params)
