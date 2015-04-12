@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     @questions = User.find_by(id: params[:id]).questions
     @answers = User.find_by(id: params[:id]).answers
     @comments = User.find_by(id: params[:id]).comments
-    # @votes = User.find_by(id: params[:id]).votes
+    @votes = User.find_by(id: params[:id]).votes
   end
 
   def edit #get
