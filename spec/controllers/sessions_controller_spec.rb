@@ -10,7 +10,6 @@ describe SessionsController do
   context "create" do
     it "redirects to root path after logging in" do
       params = {email: eveanandi.email, password: eveanandi.password}
-      p params
       post(:create, params)
       expect(response).to redirect_to root_path
     end
