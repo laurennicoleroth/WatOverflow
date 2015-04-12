@@ -3,7 +3,7 @@ class QuestionsController < ApplicationController
   def index
     @questions = Question.all
     @recent_questions = Question.find_most_recent
-    @highest_voted_questions = Question.find_highest_voted
+    @highest_voted_questions = Question.find_highest_voted.reverse
   end
 
   def show
