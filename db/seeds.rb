@@ -30,12 +30,12 @@ User.all.each do |user|
     Vote.create!( votable_id: rand(1..25), votable_type: "Question")
   end
   5.times do
-    Vote.create!( votable_id: rand(1..25), votable_type: "Question")
+    Vote.create!( votable_id: rand(1..25), user_id: user.id, votable_type: "Question")
   end
   5.times do
-    Vote.create!( votable_id: rand(1..25), votable_type: "Answer")
+    Vote.create!( votable_id: rand(1..25), user_id: user.id, votable_type: "Answer")
   end
    5.times do
-    Vote.create!( votable_id: rand(1..25), votable_type: "Comment")
+    Vote.create!( votable_id: rand(1..25), user_id: user.id, votable_type: "Comment")
   end
 end

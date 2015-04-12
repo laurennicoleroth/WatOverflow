@@ -3,6 +3,7 @@ class CreateVotes < ActiveRecord::Migration
     create_table :votes do |t|
       t.boolean :up, default: false
       t.boolean :down, default: false
+      t.references :user, default: 1, null: false
       t.references :votable, polymorphic: true, index: true
       t.timestamps null:false
     end

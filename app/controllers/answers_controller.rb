@@ -12,7 +12,6 @@
 
   def new
     @answer = Answer.new
-    @question_id = @answer.question_id
   end
 
   def create
@@ -20,13 +19,13 @@
     @answer.user_id = session[:user_id]
 
     if @answer.save
-      redirect_to @answer
+      redirect_to @answer.question
     else
-      redirect_to new_answer_path
+      redirect_to @answer.question
     end
   end
 
-def edit
+  def edit
     @answer = Answer.find(params[:id])
   end
 
@@ -36,16 +35,16 @@ def edit
 
      @answer.update(answer_params)
      if @answer.save
-      redirect_to @answer
+      redirect_to @answer.question
      else
-      redirect_to edit_answer_path
+      redirect_to edit_answer_path(answer)
      end
   end
 
 private
 
   def answer_params
-    params.require(:answer).permit(:body, :best).merge(user_id: session[:user_id], question_id: params[:question_id])
+    params.require(:answer).permit(:body, :best, :question_id).merge(user_id: session[:user_id])
   end
 
   def destroy
