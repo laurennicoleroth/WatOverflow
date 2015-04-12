@@ -16,11 +16,12 @@ class CommentsController < ApplicationController
   def create
     flash[:notice] = "Thanks for your comment!"
     @comment = Comment.create!(comment_params)
+    # render partial: "comment", layout: false, locals: { comment: @comment }
+
     if @comment.valid?
-      render partial: "comment", layout: false, locals: { comment: @comment }
+      redirect_to question_path(@comment.commentable_id)
     else
       @errors = @comment.errors.full_messages
-      render partial: "comment", layout: false, locals: { comment: @comment }
     end
   end
 
@@ -31,6 +32,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
+
     if @comment
       @comment.destroy
       flash[:notice] = "Comment Destroyed"
@@ -49,6 +51,6 @@ class CommentsController < ApplicationController
 private
 
   def comment_params
-    params.require(:comment).permit(:body, :user_id, :comment)
+    params.require(:comment).permit(:body, :user_id, :commentable_id, :commentable_type)
   end
 end
