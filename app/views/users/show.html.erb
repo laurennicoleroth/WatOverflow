@@ -1,9 +1,34 @@
-<p> User Name: <%= @user.name %> </p>
-<p> User Email: <%= @user.email %> </p>
+<h3> <%= @user.name %> </h3>
+<p> Email: <%= @user.email %> </p>
 
 
-<%= link_to "Edit User", edit_user_path(@user.id) %>
+<%= link_to "Edit Profile", edit_user_path(@user.id) %>
 
-<%= link_to "Delete User Profile", user_path(@user.id), method: :delete, data: {confirm: "Are you sure?"} %>
+<%= link_to "Delete Profile", user_path(@user.id), method: :delete, data: {confirm: "Are you sure?"} %>
+
+<div id="user_questions">
+  <h4><%=@questions.count%> Questions </h4>
+  <% @questions.each do |question|%> <br>
+    <%= link_to "#{question.title}", question_path(question.id) %>
+  <%end%>
+</div>
+
+<div id="user_answers">
+  <h4><%=@answers.count%> Answers </h4>
+  <% @answers.each do |answer|%> <br>
+    <%= link_to "#{answer.body}", answer_path(answer.id) %>
+  <%end%>
+</div>
+
+<div id="user_comments">
+  <h4><%=@comments.count%> Comments </h4>
+  <% @comments.each do |comment|%> <br>
+    <%= link_to "#{comment.body}", comment_path(comment.id) %>
+  <%end%>
+</div>
+
+<div id="user_votes">
+  <h4><%=@votes.count%> Votes Cast </h4>
+</div>
 
 
