@@ -1,8 +1,8 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe QuestionsController do
   let(:question) {Question.new(title: "Wat is dis?", content: "I'm truly confused with what the goal is for this website.")}
-  let(:inv_question) {Question.new(title: 123, content: []])}
+  let(:inv_question) {Question.new(title: 123, content: [])}
 
   context "index" do
     it "returns recent questions" do
