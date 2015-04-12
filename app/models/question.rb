@@ -6,12 +6,11 @@ class Question < ActiveRecord::Base
 
 
   def self.find_highest_voted
-    @vote_counts = []
-    Question.all.each do |question|
-      @vote_counts << { question.votes.count => question }
+    Question.all.sort_by do |question|
+      question.votes.map do |vote|
+        question.votes.count
+      end.reduce(0, :+)
     end
-    # Hash[@vote_counts.sort]
-
   end
 
   def self.find_most_recent
