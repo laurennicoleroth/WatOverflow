@@ -18,6 +18,10 @@ class Question < ActiveRecord::Base
   end
 
   def self.find_trending
-
+     Question.all.sort_by do |question|
+      question.comments.map do |comment|
+        question.comments.count
+      end.reduce(0, :+)
+    end
   end
 end

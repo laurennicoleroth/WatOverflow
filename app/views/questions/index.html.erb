@@ -3,7 +3,7 @@
 <div class="container">
   <div class="edit">
     <% if current_user %>
-      <%= link_to "Post A Question", new_question_path %>
+      <button class="btn btn-lg"><%= link_to "Post A Question", new_question_path %></button>
     <% end %>
   </div>
 
@@ -11,7 +11,6 @@
     <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
         <li class="active"><a href="#highest-voted" data-toggle="tab">Highest Voted</a></li>
         <li><a href="#most-recent" data-toggle="tab">Most Recent</a></li>
-        <li><a href="#all" data-toggle="tab">All</a></li>
     </ul>
     <div id="my-tab-content" class="tab-content">
         <div class="tab-pane active" id="highest-voted">
@@ -30,9 +29,8 @@
                   <%= render partial: "question", collection: @highest_voted_questions  %>
                 </tbody>
               </table>
-
-
         </div>
+
         <div class="tab-pane" id="most-recent">
             <h1> Most Recent </h1>
               <table class="table table-hover" id="most-recent">
@@ -49,27 +47,6 @@
                     <%= render partial: "question", collection: @recent_questions  %>
                   </tbody>
                 </table>
-              </div>
-              </div>
-
-        </div>
-
-        <div class="tab-pane" id="all">
-            <h1> All Questions </h1>
-            <table class="table table-hover" id="all-questions">
-                <thead>
-                  <tr>
-                    <th>Votes</th>
-                    <th>Comments</th>
-                    <th>Question</th>
-                    <th>Posted</th>
-                    <th>Username</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <%= render partial: "question", collection: @questions %>
-                </tbody>
-              </table>
         </div>
 
     </div>
