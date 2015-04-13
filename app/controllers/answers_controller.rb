@@ -18,7 +18,7 @@
     @answer = Answer.new(answer_params)
 
     if @answer.save
-      redirect_to @answer.question
+      render partial: 'show', locals: {answer: @answer}
     else
       redirect_to @answer.question
     end
