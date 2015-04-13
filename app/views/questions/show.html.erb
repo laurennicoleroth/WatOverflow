@@ -47,7 +47,7 @@
   <div class="answers-show">
     <!-- TODO: This provides the local variable "answer" which we'll need to replace with the @answer in the _show.erb -->
     <% @question.answers.each do |answer| %>
-      <%= render partial: 'answers/show', locals: {answer: answer} %>
+      <%= render partial: 'answers/show', locals: {answer: answer}, layout: false %>
     <% end %>
   </div>
 <div>

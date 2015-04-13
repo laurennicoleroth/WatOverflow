@@ -35,6 +35,19 @@ $( document ).ready(function() {
     });
 
 
+  $('.answers-new').on('submit', '#new-answer-form', function(event){
+    event.preventDefault();
+    $target = $(event.target);
+    var url = $target.attr('action');
+    var data = $target.serialize();
+    $.ajax({
+      method: "post",
+      url: url,
+      data: data,
+    }).done(function(response){
+      $('.answers-show').replaceWith(response);
+    });
+  });
 });
 
 
