@@ -4,5 +4,7 @@
   <%= f.label :body, 'Body' %>
   <%= f.text_area(:body, cols: 100, rows: 10) %>
   <%= f.hidden_field :user_id, value: 1 %>
+  <%= f.hidden_field :commentable_id, value: params[:commentable_id] %>
+  <%= f.hidden_field :commentable_type, value: params[:commentable_type] %>
   <%= f.submit  %>
 <% end %>
