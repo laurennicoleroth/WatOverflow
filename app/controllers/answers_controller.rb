@@ -16,7 +16,6 @@
 
   def create
     @answer = Answer.new(answer_params)
-    @answer.user_id = session[:user_id]
 
     if @answer.save
       redirect_to @answer.question
@@ -31,7 +30,6 @@
 
   def update
      @answer = Answer.find(params[:id])
-     @answer.user_id = session[:user_id]
 
      @answer.update(answer_params)
      if @answer.save
@@ -41,16 +39,17 @@
      end
   end
 
-private
-
-  def answer_params
-    params.require(:answer).permit(:body, :best, :question_id).merge(user_id: session[:user_id])
-  end
-
   def destroy
     @answer = Answer.find(params[:id])
     @answer.destroy!
     redirect_to '/'
   end
+
+private
+
+  def answer_params
+    params.require(:answer).permit(:body, :best, :question_id).merge(user_id: current_user.id)
+  end
+
 
 end

@@ -2,6 +2,7 @@ class QuestionsController < ApplicationController
 
   def index
     @recent_questions = Question.find_most_recent
+    # TODO: Move reverse to model.
     @highest_voted_questions = Question.find_highest_voted.reverse
     @trending = Question.find_trending.reverse
   end
