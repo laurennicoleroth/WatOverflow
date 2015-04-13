@@ -29,6 +29,8 @@
       <%= link_to "Delete", root_path, method: :delete, data: {confirm: "Do you want to delete this?"}%>
     <% end %>
   </div>
+
+
   </div>
 
   <div class="col-md-10">
@@ -37,20 +39,42 @@
   </div>
 
 
-  <h3><%= @question.answers.count %> Answer(s)</h3>
+
+<!-- THis is where you need the question comments to go  -->
+<h4> Question Comments:</h4>
+    <% @question.comments.each do |comment|%>
+      <%= render partial: 'comments/comment', locals: {comment: comment} %>
+    <% end %>
+
+    <%= link_to 'Add New Comment', new_comment_path(commentable_id: @question.id, commentable_type: 'Question'), locals:{question: @question} %>
+
+<h3><%= @question.answers.count %> Answer(s)</h3>
+
 
     <div class="answers-new">
       <!-- Locals' symbols can be named anything since we will be using it like a variable in the linked comment. We should distinguish the different variables once everything ties into each other (ie. votes_id/type, answers_id/type, questions_id/type) -->
       <%= render partial: 'answers/new', locals: {question_id: @question.id} %>
     </div>
 
+  <div class="answers-show">
+    <!-- TODO: This provides the local variable "answer" which we'll need to replace with the @answer in the _show.erb -->
+    <% @question.answers.each do |answer| %>
+      <%= render partial: 'answers/show', locals: {answer: answer} %>
+    <% end %>
 
-    <div class="answers-show">
-      <!-- TODO: This provides the local variable "answer" which we'll need to replace with the @answer in the _show.erb -->
-      <% @question.answers.each do |answer| %>
-        <%= render partial: 'answers/show', locals: {answer: answer} %>
-      <% end %>
-    </div>
+<h3><%= @question.answers.count %> Answer(s)</h3>
+
+<h4> Answers:</h4>
+  <% @answers.each do |answer| %>
+    <h5>- <%= answer.body %></h5>
+      <% answer.comments.each do |comment| %>
+        <p>Comment: <%= render partial: 'comments/comment', locals: {comment: comment} %></p>
+      <%end%>
+    <%end%>
+
+<%= render partial: 'answers/new', locals: {question_id: @question.id} %>
+
+</div>
 
     <div class="comments-show">
       <h3>Comments:</h3>
