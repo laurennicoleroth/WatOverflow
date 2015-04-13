@@ -1,5 +1,5 @@
 <div id="ans_show">
-  <%= answer.body %>
+  <%= render partial: 'answers/answer', locals: {answer: answer} %>
 </div>
 
 <%= link_to 'Edit', edit_answer_path(answer) %>

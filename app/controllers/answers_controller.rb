@@ -19,8 +19,7 @@
     @answer.user_id = session[:user_id]
 
     if @answer.save
-      # render partial: 'answers/_answer', locals: {answer: answer}
-      redirect_to @answer.question
+      render partial: 'show', locals: {answer: @answer}
     else
       redirect_to @answer.question
     end

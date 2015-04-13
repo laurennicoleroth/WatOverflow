@@ -45,7 +45,8 @@ $( document ).ready(function() {
       url: url,
       data: data,
     }).done(function(response){
-      $('.answers-show').replaceWith(response);
+      $('.answers-show').append(response);
+      $('#text-area').val('');
     });
   });
 });
