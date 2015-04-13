@@ -32,14 +32,9 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-
-    if @comment
-      @comment.destroy
-      flash[:notice] = "Comment Destroyed"
-      redirect_to '/comments'
-    else
-      redirect_to :action => 'show'
-    end
+    question = @comment.question
+    @comment.destroy!
+    redirect_to question
   end
 
   def upvote
