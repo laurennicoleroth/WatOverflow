@@ -2,11 +2,11 @@
 <h4>Create an Account</h4>
 
 <%= form_for :user, url: '/users' do |f| %>
-  Name: <%= f.text_field :name %>
-  Email: <%= f.text_field :email %>
-  Password: <%= f.password_field :password %>
+  <label>Name: <%= f.text_field :name %></label>
+  <label>Email: <%= f.text_field :email %></label>
+  <label>Password: <%= f.password_field :password %></label>
 
   <%= f.submit "Create Account" %>
 
-  <% end %>
+<% end %>
 

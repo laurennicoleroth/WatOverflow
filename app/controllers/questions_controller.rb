@@ -2,7 +2,7 @@ class QuestionsController < ApplicationController
 
   def index
     @recent_questions = Question.find_most_recent
-    # TODO: Move reverse to model.
+    # TODO: Move reverse to model. (as :descending)
     @highest_voted_questions = Question.find_highest_voted.reverse
     @trending = Question.find_trending.reverse
   end
@@ -10,6 +10,7 @@ class QuestionsController < ApplicationController
   def show
     # Answer.new is needed here because when using partial (See in 'views/questions/show'), you need to pass in the parameters for the partial to work. We can take out the answers controller's 'def new' at this point.
     @question = Question.find_by(id: params[:id])
+    # TODO: move to view helper or User model class
     @username = User.find(@question.user_id).name.downcase.split('').join.gsub(' ','')
     @answers = @question.answers
     @answer = Answer.new
@@ -24,21 +25,15 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    new_question = Question.new(question_params)
-    if new_question.save!
-      redirect_to question_path(new_question.id)
-    else
-      [404, "you lost, so far gone"]
-    end
+    @question = Question.new(question_params)
+    return render(:edit, status: :bad_request) unless @question.valid?
+    redirect_to @question
   end
 
   def update
-    question = Question.find_by(id: params[:id])
-     if question.update(question_params)
-       redirect_to question_path(question.id)
-     else
-       [404, "you lost, so far gone"]
-     end
+    question = Question.find(params[:id])
+    question.update!(question_params)
+    redirect_to question
   end
 
   def destroy

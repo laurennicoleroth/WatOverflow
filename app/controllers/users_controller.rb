@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   def index  #probably dont need this
   end
 
@@ -29,14 +28,11 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find_by(id: params[:id])
-    @user.update(user_params)
-
-    if @user.save
-      redirect_to user_path(@user.id)
-    else
-      redirect_to edit_user_path(@user.id)
-    end
+    @user = User.find(params[:id])
+    user.update(user_params)
+    # move this logic into the application controller
+    return render(:edit, status: :bad_request) unless @user.valid?
+    redirect_to user
   end
 
   def destroy
