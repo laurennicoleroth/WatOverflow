@@ -29,6 +29,12 @@ $( document ).ready(function() {
         var newValue = parseInt($("#vote").val()) - 1;
         $("#vote").val(newValue);
     });
+
+    $("#most-recent-button").click(function () {
+        alert("most recent");
+    });
+
+
 });
 
 

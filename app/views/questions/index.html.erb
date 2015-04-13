@@ -1,24 +1,73 @@
-<!-- TODO: Display all jokes (Eventually split into highest votes/most recent/trending partials) -->
+<%# @recent_questions.first.title %>
+<%# @highest_voted_questions.first.title %>
 <div class="container">
   <div class="edit">
     <% if current_user %>
-      <%= link_to "Post A Question", new_question_path %>
+      <button class="btn btn-lg"><%= link_to "Post A Question", new_question_path %></button>
     <% end %>
   </div>
+<div class="bs-example">
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#sectionA">Highest Voted</a></li>
+        <li><a data-toggle="tab" href="#sectionB">Most Recent</a></li>
+        <li><a data-toggle="tab" href="#sectionC">Trending</a></li>
+    </ul>
+    <div class="tab-content">
+        <div id="sectionA" class="tab-pane fade in active">
+           <h1> Highest Voted </h1>
+            <table class="table table-hover" id="highest-voted">
+                <thead>
+                  <tr>
+                    <th>Votes</th>
+                    <th>Comments</th>
+                    <th>Question</th>
+                    <th>Posted</th>
+                    <th>Username</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <%= render partial: "question", collection: @highest_voted_questions  %>
+                </tbody>
+              </table>
+        </div>
 
-<table class="table table-hover">
-    <thead>
-      <tr>
-        <th>Votes</th>
-        <th>Comments</th>
-        <th>Question</th>
-        <th>Posted</th>
-        <th>Username</th>
-      </tr>
-    </thead>
-    <tbody>
-      <%= render partial: "question", collection: @questions %>
-    </tbody>
-  </table>
+        <div id="sectionB" class="tab-pane fade">
+          <h1> Most Recent</h1>
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Votes</th>
+                    <th>Comments</th>
+                    <th>Question</th>
+                    <th>Posted</th>
+                    <th>Username</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <%= render partial: "question", collection: @recent_questions  %>
+                </tbody>
+              </table>
+        </div>
+
+          <div id="sectionC" class="tab-pane fade">
+          <h1>Trending</h1>
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Votes</th>
+                    <th>Comments</th>
+                    <th>Question</th>
+                    <th>Posted</th>
+                    <th>Username</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <%= render partial: "question", collection: @trending  %>
+                </tbody>
+              </table>
+        </div>
+
+    </div>
 </div>
-</div>
+
+
